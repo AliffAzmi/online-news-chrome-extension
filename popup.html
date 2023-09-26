@@ -1,0 +1,207 @@
+<html>
+
+<head>
+	<title>Malaysiakini News</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+
+	<link href="uikit.min.css" rel="stylesheet" type="text/css">
+	<link href="uikit.notify.min.css" rel="stylesheet" type="text/css">
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="font-awesome.css" rel="stylesheet" type="text/css">
+
+	<script src="analytics.js"></script>
+	<script src="jquery-1.12.3.min.js"></script>
+	<script src="uikit.js"></script>
+	<script src="uikit.notify.min.js"></script>
+	<script src="jquery.popupoverlay.js"></script>
+	<script src="script.js"></script>
+	<script src="jquery.timeago.js"></script>
+	<script src="moment.min.js"></script>
+	<script src="jquery.cookie.js"></script>
+
+	<link rel="manifest" href="manifest.json">
+
+</head>
+
+<body style="width:360px;padding-bottom:55px;">
+
+	<ul id="mk-switcher" class="uk-switcher uk-height-viewport">
+		<li class="mk-tabbar mk-tabbar-news uk-active">
+			<div id="home">
+				<div class="mk-notify-alert"
+					style="display: block;position: absolute;z-index: 1000; opacity:0; top: 0px;padding: 1px 10px;color: rgb(255, 255, 255);background-color: rgb(33, 33, 33);font-size: 11px;width: 100%;text-align: center;margin-top: -20px;">
+					Checking new stories...</div>
+				<h1 class="uk-text-center uk-width-1-1 uk-animation-scale-down"
+					style="background:#fff;margin:0;padding:30px 0;"><img src="./images/logo.svg" alt="Malaysiakini"
+						class="uk-width-7-10"></h1>
+				<div id="mk-registering" style="display:block;">Please wait, registering extension...</div>
+				<div id="mk-notification-toggle" style="display:none;">
+					<button id="mk-notification-toggle-on"
+						class="uk-button uk-width-1-1 mk-notification-toggle uk-text-small"><i
+							class="uk-icon-toggle-on uk-icon-small"></i> Notification is On</button>
+					<button id="mk-notification-toggle-off"
+						class="uk-button uk-width-1-1 mk-notification-toggle uk-text-small uk-hidden"><i
+							class="uk-icon-toggle-off uk-icon-small"></i> Notification is Off</button>
+				</div>
+				<div class="feed-item">
+					<article id="feed-title"></article>
+				</div>
+			</div>
+		</li>
+		<li class="mk-tabbar mk-tabbar-reading-list">
+			<section id="reading-list">
+				<div class="feed-item">
+					<article id="feed-reading-list"></article>
+				</div>
+				<!-- Empty List -->
+				<div class="uk-block reading-list-no-feed">
+					<div class="uk-container uk-text-muted">
+						<h2 class="uk-text-muted">The List is Empty</h2>
+						<p>Click on the &nbsp; <i class="uk-icon-bookmark"></i> &nbsp; to save an article for reading
+							later.</p>
+					</div>
+				</div>
+				<!-- // -->
+			</section>
+		</li>
+		<li class="mk-tabbar mk-tabbar-favourites">
+			<div id="favourites">
+				<div class="feed-item">
+					<article id="feed-fav"></article>
+				</div>
+				<!-- No Favourites -->
+				<div class="uk-block fav-no-feed">
+					<div class="uk-container uk-text-muted">
+						<h2 class="uk-text-muted">No Saved Favourites</h2>
+						<p>Click on the &nbsp; <i class="uk-icon-heart"></i> &nbsp; to add an article to your
+							favourites.</p>
+						<!--
+							<section class="empty-feed-message"></section>
+							<section class="empty-feed-message2"></section>
+							-->
+					</div>
+				</div>
+				<!-- // -->
+			</div>
+		</li>
+		<li class="mk-tabbar mk-tabbar-settings uk-contrast" style="background:#424242">
+			<div id="setting" class="uk-block uk-height-viewport">
+				<section class="uk-container">
+					<form class="uk-form">
+						<legend>News Language</legend>
+						<div class="uk-form-row">
+							<label>
+								<input type="checkbox" class="uk-form-control"
+									id="settings_notification_chan_mk-lang:en">
+								English
+							</label>
+							<br />
+							<label>
+								<input type="checkbox" class="uk-form-control"
+									id="settings_notification_chan_mk-lang:my">
+								Bahasa Malaysia
+							</label>
+							<br />
+							<label>
+								<input type="checkbox" class="uk-form-control"
+									id="settings_notification_chan_mk-lang:zh">
+								中文
+							</label>
+
+							<br />
+							<br />
+						</div>
+
+						<legend>Notifications</legend>
+						<div class="uk-form-row uk-hidden">
+							<label>
+								<input type="checkbox" class="dc" id="settings_notification_onoff">
+								Enable desktop notifications
+							</label>
+						</div>
+						<div class="uk-form-row">
+							<!--<div style="margin-bottom:5px">Notification Format</div>-->
+							<select id="settings_notification_type" class="uk-width-1-1">
+								<option value="image_big">Large image with text</option>
+								<option value="image_small">Small image with text</option>
+								<option value="basic">Text only</option>
+							</select>
+						</div>
+
+						<div class="uk-form-row uk-margin-large-top">
+							<input type="button" value="Save Settings" id="settings_notification_button_save"
+								class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-border-rounded uk-text-contrast"
+								style="border-radius:5px">
+						</div>
+					</form>
+					<form id="mk-form-rating" class="uk-form uk-margin-large-top uk-text-center">
+						<div class="uk-form-row uk-margin-large-top">
+							<a href="#" class="uk-button uk-border-rounded uk-text-contrast"
+								style="background-color:#212121;" id="settings_rate_button"><i
+									class="uk-icon-thumbs-up"></i> Rate this extension</a>
+						</div>
+					</form>
+					<div class="uk-text-center uk-text-small uk-text-muted">Version <span
+							id="mkext_version_from_manifest"></span></div>
+
+
+				</section>
+
+			</div>
+		</li>
+	</ul>
+
+	<section id="mk-tabbar" class="uk-navbar uk-position-z-index uk-width-1-1 uk-animation-slide-bottom uk-contrast"
+		style="position:fixed;bottom:0;left:0;width:360px">
+		<ul class="uk-grid uk-grid-collapse uk-grid-width-1-4 uk-text-center">
+			<li id="mk-tabbar-news" class="mk-tabbar uk-active"><a class="uk-button uk-button-mini uk-width-1-1"
+					style="padding:10px 0 5px" href="#" id="homes"><i
+						class="uk-icon-file-text uk-icon-small"></i><br>News</a></li>
+			<li id="mk-tabbar-reading-list" class="mk-tabbar"><a class="uk-button uk-button-mini uk-width-1-1"
+					style="padding:10px 0 5px; position:relative;" href="#" id="reading_list">
+					<div id="notifi-num-total" class=""></div><i class="uk-icon-bookmark uk-icon-small"></i><br>Reading
+					List
+				</a></li>
+			<li id="mk-tabbar-favourites" class="mk-tabbar"><a class="uk-button uk-button-mini uk-width-1-1"
+					style="padding:10px 0 5px" href="#" id="favourite"><i
+						class="uk-icon-heart uk-icon-small"></i><br>Favourites</a></li>
+			<li id="mk-tabbar-settings" class="mk-tabbar"><a class="uk-button uk-button-mini uk-width-1-1"
+					style="padding:10px 0 5px" href="#" id="settings"><i
+						class="uk-icon-cog uk-icon-small"></i><br>Settings</a></li>
+		</ul>
+	</section>
+
+	<div id="mk-modal-share" class="uk-modal">
+		<div class="uk-modal-dialog" style="width:320px;">
+			<a class="uk-modal-close uk-close"></a>
+			<form class="uk-form">
+				<legend>Share this on...</legend>
+				<ul class="uk-list uk-list-space">
+					<li><a href="#" class="uk-button uk-button-primary uk-button-large uk-width-1-1"
+							style="background:#3b5998">Facebook</a></li>
+					<li><a href="#" class="uk-button uk-button-primary uk-button-large uk-width-1-1"
+							style="background:#4099FF">Twitter</a></li>
+					<li><a href="#" class="uk-button uk-button-primary uk-button-large uk-width-1-1"
+							style="background:#dd4b39">Google+</a></li>
+					<li><a href="#" class="uk-button uk-button-primary uk-button-large uk-width-1-1"
+							style="background:#757575">Email</a></li>
+					<li>
+						<div class="uk-grid uk-grid-small">
+							<div class="uk-width-1-2"><button href="#" class="uk-button uk-button-large uk-width-1-1"><i
+										class="uk-icon-bookmark-o uk-icon-small"></i> Read later</button></div>
+							<div class="uk-width-1-2"><button href="#" class="uk-button uk-button-large uk-width-1-1"><i
+										class="uk-icon-heart-o uk-icon-small"></i> Favourite</button></div>
+						</div>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>

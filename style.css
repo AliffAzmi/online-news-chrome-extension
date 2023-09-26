@@ -1,0 +1,58 @@
+@font-face { font-family: "Roboto"; src: local('housepaint'), url(Roboto/Roboto-Regular.ttf) format("truetype"); }
+html, body { font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 300; line-height: 18px;}
+
+
+/*  News  */
+article a:hover { text-decoration:none; }
+article a .uk-panel-title, article a:hover .uk-panel-title{color:#FF5722!important;}
+/*article a:visited .uk-panel-title{color:#212121!important;}*/
+article a.mk-visited .uk-panel-title {color:#212121 !important;}
+
+article span[style*="color:#ff0000;"],
+article span[style*="color:#0000cd;"],
+article span[style*="color:#0000ff;"],
+article span[style*="color:#006400;"],
+article span[style*="color:#008000;"]{ white-space:nowrap;margin-right:3px; background-color:#ECECEC; font-size:0.9em; padding:1px 5px; border-radius:3px;}
+
+article span[style*="color:#ff0000;"] { background-color:#f44336 !important; color:#FFF !important;}
+article span[style*="color:#0000cd;"],
+article span[style*="color:#0000ff;"] { background-color:#3F51B5 !important; color:#FFF !important;}
+article span[style*="color:#006400;"],
+article span[style*="color:#008000;"] { background-color:#4CAF50 !important; color:#FFF !important;}
+
+article span[style*="color:#000000;"] { color:#999999 !important;}
+
+/*  Tab Bar  */
+#mk-tabbar a{color:#fff;background:#424242;}
+#mk-tabbar-news.uk-active a{color:#fff;background:#FF5722;}
+#mk-tabbar-reading-list.uk-active a{color:#fff;background:#03A9F4;}
+#mk-tabbar-favourites.uk-active a{color:#fff;background:#f44336;}
+#mk-tabbar-settings.uk-active a{color:#fff;background:#212121;}
+
+
+/*  Clickable Icons  */
+#mk-switcher a:hover .uk-icon-bookmark{color:orange!important;}
+#mk-switcher a:hover .uk-icon-heart{color:#f44336!important;}
+#mk-switcher a:hover .uk-icon-share{color:#3b5998!important;}
+
+
+/*  Ratings  */
+#mk-form-rating fieldset{width:217px}
+.rating > input{display:none;}
+.rating > label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}
+.rating > .half:before{content:"\f089";position: absolute;}
+.rating > label{color: #ddd;float:right;}
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label{color:#FFD700;}
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{color:#FFED85;}
+
+
+#notifi-num-total {  display: none; position: absolute; right: 1px; background-color: red; padding: 3px 5px 4px 7px; line-height: 1; border-radius: 1000px; text-align: center; font-weight: bold; top: 7px; }
+
+.feed-item { margin-bottom: 50px;}
+
+
